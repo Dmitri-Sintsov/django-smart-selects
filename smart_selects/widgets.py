@@ -80,7 +80,7 @@ class ChainedSelect(JqueryMediaMixin, Select):
         return media
 
     # TODO: Simplify this and remove the noqa tag
-    def render(self, name, value, attrs=None, choices=()):  # noqa: C901
+    def render(self, name, value, attrs=None, choices=(), renderer=None):  # noqa: C901
         if len(name.split('-')) > 1:  # formset
             chained_field = '-'.join(name.split('-')[:-1] + [self.chained_field])
         else:
@@ -214,7 +214,7 @@ class ChainedSelectMultiple(JqueryMediaMixin, SelectMultiple):
         media += Media(js=js)
         return media
 
-    def render(self, name, value, attrs=None, choices=()):
+    def render(self, name, value, attrs=None, choices=(), renderer=None):
         if len(name.split('-')) > 1:  # formset
             chain_field = '-'.join(name.split('-')[:-1] + [self.chain_field])
         else:
